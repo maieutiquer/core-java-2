@@ -4,13 +4,12 @@ public class Problems2Impl implements Problems2 {
 
     @Override
     public boolean isOdd(int number) {
-        // TODO Auto-generated method stub
-        return false;
+        return number % 2 == 0;
     }
 
     @Override
     public boolean isPrime(int number) {
-        // TODO Auto-generated method stub
+        // TODO Auto-generated method stubw
         return false;
     }
 
