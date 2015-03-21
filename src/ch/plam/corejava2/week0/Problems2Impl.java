@@ -1,22 +1,27 @@
 package ch.plam.corejava2.week0;
 
+import java.util.Arrays;
+
 public class Problems2Impl implements Problems2 {
 
     @Override
     public boolean isOdd(int number) {
-        return number % 2 == 0;
+        return number % 2 != 0;
     }
 
     @Override
     public boolean isPrime(int number) {
-        // TODO Auto-generated method stubw
-        return false;
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
     public int min(int... array) {
-        // TODO Auto-generated method stub
-        return 0;
+        return Arrays.stream(array).min().getAsInt();
     }
 
     @Override
