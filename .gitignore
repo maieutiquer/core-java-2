@@ -34,3 +34,8 @@ local.properties
 
 # TeXlipse plugin
 .texlipse
+
+# Excluded projects
+
+Project1
+.recommenders
