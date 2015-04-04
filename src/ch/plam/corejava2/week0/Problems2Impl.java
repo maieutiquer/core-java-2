@@ -104,7 +104,7 @@ public class Problems2Impl implements Problems2 {
     public int[] histogram(short[][] image) {
         int[] imageAsArray = matrixToArray(image);
         for (int i = 0; i < imageAsArray.length; i++) {
-            System.out.println(i + " - " + imageAsArray[i]);
+//            System.out.println(i + " - " + imageAsArray[i]);
         }
         int numberOfUniqueElementsInImage;
         Set<Integer> uniqKeys = new TreeSet<Integer>();
@@ -138,8 +138,11 @@ public class Problems2Impl implements Problems2 {
 
     @Override
     public long pow(int a, int b) {
-        // TODO Auto-generated method stub
-        return 0;
+        int result = 1;
+        for (int i = 0; i < b; i++) {
+            result *= a;
+        }
+        return result;
     }
 
     @Override
