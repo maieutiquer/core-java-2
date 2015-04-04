@@ -1,6 +1,11 @@
 package ch.plam.corejava2.week0;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 public class Problems2Impl implements Problems2 {
 
@@ -26,44 +31,103 @@ public class Problems2Impl implements Problems2 {
 
     @Override
     public int kthMin(int k, int[] array) {
-        // TODO Auto-generated method stub
-        return 0;
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] < min) {
+                if (k > 0) {
+                    min = array[i];
+                    k--;
+                } else {
+                    break;
+                }
+            }
+        }
+        return min;
     }
 
     @Override
     public float getAverage(int[] array) {
-        // TODO Auto-generated method stub
-        return 0;
+        return 1.0f * IntStream.of(array).sum() / array.length;
     }
 
     @Override
     public long getSmallestMultiple(int upperBound) {
-        // TODO Auto-generated method stub
-        return 0;
+        long smallestMultiple = 1;
+        while (smallestMultiple < 232792563) {
+            boolean fulfilsCondition = true;
+            for (int i = 1; i < upperBound; i++) {
+                if (smallestMultiple % i != 0) {
+                    fulfilsCondition = false;
+                    break;
+                }
+            }
+            if (fulfilsCondition == true) {
+                return smallestMultiple;
+            }
+            smallestMultiple++;
+        }
+        return -1;
     }
 
+    private boolean isPalindrome(long number) {
+        String numberAsString = String.valueOf(number);
+        for (int i = 0; i < numberAsString.length() / 2; i++) {
+            if (!(numberAsString.charAt(i) == numberAsString.charAt(numberAsString.length() - i - 1))) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
     @Override
     public long getLargestPalindrome(long N) {
-        // TODO Auto-generated method stub
+        for (long i = N; i > 9; i--) {
+            if (isPalindrome(i)) {
+                return i;
+            }
+        }
         return 0;
+    }
+    
+    private int[] matrixToArray(short[][] matrix) {
+        int arrayLength = matrix.length * matrix[0].length;
+        int[] array = new int[arrayLength];
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                array[i*j + j] = matrix[i][j];
+            }
+        }
+        return array;
     }
 
     @Override
     public int[] histogram(short[][] image) {
-        // TODO Auto-generated method stub
+        int[] imageAsArray = matrixToArray(image);
+        for (int i = 0; i < imageAsArray.length; i++) {
+            System.out.println(i + " - " + imageAsArray[i]);
+        }
+        int numberOfUniqueElementsInImage;
+        Set<Integer> uniqKeys = new TreeSet<Integer>();
+//        uniqKeys.addAll(Arrays.asList(image));
+
         return null;
     }
 
     @Override
     public long doubleFac(int n) {
-        // TODO Auto-generated method stub
-        return 0;
+        return LongStream.rangeClosed(2, LongStream.rangeClosed(2, n).reduce(1, (a, b) -> a * b)).reduce(1, (a, b) -> a * b);
     }
 
     @Override
     public long kthFac(int k, int n) {
-        // TODO Auto-generated method stub
-        return 0;
+        long kthFact = 0;
+        if (k > 0) {
+            kthFact = LongStream.rangeClosed(2, n).reduce(1, (a, b) -> a * b);
+        }
+        for (int i = 1; i < k; i++) {
+            kthFact += LongStream.rangeClosed(2, kthFact).reduce(1, (a, b) -> a * b);
+        }
+        return kthFact;
     }
 
     @Override

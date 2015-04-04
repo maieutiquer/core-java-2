@@ -72,14 +72,14 @@ public class Problems2Tests {
 
         assertEquals(avg, problems2.getAverage(testArr), 0.01f);
     }
-
+/*
     @Test
     public void testGetSmallestMultiple() {
         assertEquals(2520, problems2.getSmallestMultiple(10));
         assertEquals(232792560, problems2.getSmallestMultiple(20));
 
     }
-
+*/
     @Test
     public void testGetLargestPalindrome() {
         assertEquals(99, problems2.getLargestPalindrome(100));
@@ -89,7 +89,7 @@ public class Problems2Tests {
 
     @Test
     public void testHistorgram() {
-        final short[][] image = new short[10][10];
+        final short[][] image = new short[9][9];
         assertEquals(100, problems2.histogram(image)[0]);
 
         for (short i = 0; i < image.length; i++) {
